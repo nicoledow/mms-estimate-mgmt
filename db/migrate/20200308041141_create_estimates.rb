@@ -6,7 +6,7 @@ class CreateEstimates < ActiveRecord::Migration[6.0]
       t.integer :bedrooms
       t.integer :floors
       t.boolean :elevator, :default => false
-      t.integer :parking_type
+      t.string :parking_type
 
       t.timestamps
     end

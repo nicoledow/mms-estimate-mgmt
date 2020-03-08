@@ -6,7 +6,6 @@ class EstimatesController < ApplicationController
     end
 
     def create
-        binding.pry
         new_customer = Customer.create(
             name: params[:customerName],
             phone: params[:customerPhone],
@@ -20,9 +19,11 @@ class EstimatesController < ApplicationController
             bedrooms: params[:numOfBedrooms],
             floors: params[:numOfFloors],
             parking_type: params[:parkingDistance],
-            customer_id: new_customer.id,
-            quote: self.generate_quote
+            customer_id: new_customer.id
         )
+        new_quote = Estimate.generate_quote(new_estimate)
+        new_estimate.quote = new_quote
+        new_estimate.save
 
         render json: new_estimate
     end

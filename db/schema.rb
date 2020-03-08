@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2020_03_08_185800) do
     t.integer "bedrooms"
     t.integer "floors"
     t.boolean "elevator", default: false
-    t.integer "parking_type"
+    t.string "parking_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "customer_id"

@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry'
 gem 'rack-cors'
 gem 'dotenv-rails'
+gem 'rest-client'
