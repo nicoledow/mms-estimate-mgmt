@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
 
-  get '/estimates', to: 'estimates#index'
-
+  resources :estimates, only: [:index, :create]
 end
