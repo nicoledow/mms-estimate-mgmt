@@ -31,10 +31,6 @@ class EstimatesController < ApplicationController
         render json: new_estimate
     end
 
-    def send_mms_email
-
-    end
-
 private
     def estimate_params
         params.permit(
