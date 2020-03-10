@@ -6,11 +6,11 @@ class EstimatesController < ApplicationController
     end
 
     def create
-        new_customer = Customer.create(
-            name: params[:customerName],
-            phone: params[:customerPhone],
-            email: params[:customerEmail]
-        )
+        customer = Customer.find_or_create_by(email: estimate_params[:customerEmail])
+        customer.name = estimate_params[:customerName]
+        customer.phone = estimate_params[:customerPhone]
+        customer.save
+
         new_estimate = Estimate.create(
             starting_city: params[:startingCity],
             starting_state: params[:startingState],
@@ -19,13 +19,20 @@ class EstimatesController < ApplicationController
             bedrooms: params[:numOfBedrooms],
             floors: params[:numOfFloors],
             parking_type: params[:parkingDistance],
-            customer_id: new_customer.id
+            customer_id: customer.id
         )
+
         new_quote = Estimate.generate_quote(new_estimate)
         new_estimate.quote = new_quote
         new_estimate.save
 
+        EstimateMailer.with(estimate: @new_estimate).new_estimate_email.deliver_later
+
         render json: new_estimate
+    end
+
+    def send_mms_email
+
     end
 
 private
