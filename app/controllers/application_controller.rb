@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
 private
     def require_login
         if !session[:user_id]
-        flash[:login_required] = "Log in required." 
-        redirect_to root_path
+            redirect_to root_path
         end
     end
 end
