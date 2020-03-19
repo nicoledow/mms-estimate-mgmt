@@ -3,6 +3,8 @@ require "rest-client"
 class Estimate < ApplicationRecord
     belongs_to :customer
 
+    default_scope {order("created_at DESC")}
+
     def estimated_labor_cost
        if self.bedrooms == 1 
          return 75 * 2 * self.estimated_time_factor

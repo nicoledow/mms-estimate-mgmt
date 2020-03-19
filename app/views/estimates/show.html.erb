@@ -1,0 +1,19 @@
+<h2> Estimate for <%= @estimate.customer.name %> </h2>
+
+<p>Name: <%= @estimate.customer.name %></p>
+    <br>
+    <p>Email: <%= @estimate.customer.email %></p>
+    <br>
+    <p>Phone: <%= @estimate.customer.phone %></p>
+    <br>
+    <p>Starting Location: <%= @estimate.starting_city %>, <%= @estimate.starting_state %></p>
+    <br>
+    <p>Destination: <%= @estimate.destination_city %>, <%= @estimate.destination_state %> </p>
+    <br>
+    <p>Number of bedrooms: <%= @estimate.bedrooms %> </p>
+    <br>
+    <p>Parking proximity: <%= @estimate.parking_type %> <p>
+    <br>
+    <p>Number of Floors: <%= @estimate.floors %> <p>
+    <br>
+    <strong> <p>Quoted price: <%= @estimate.price %> </p> </strong>

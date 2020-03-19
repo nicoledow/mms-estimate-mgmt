@@ -24,7 +24,7 @@ module MmsEstimateMgmt
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins 'https://mms-estimator.herokuapp.com'
         resource '*', headers: :any, methods: [:get, :post, :patch, :options]
       end
     end

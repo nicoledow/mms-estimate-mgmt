@@ -5,6 +5,10 @@ class EstimatesController < ApplicationController
         @estimates = Estimate.all
     end
 
+    def show
+        @estimate = Estimate.find_by_id(params[:id])
+    end
+
     def create
         customer = Customer.find_or_create_by(email: estimate_params[:customerEmail])
         customer.name = estimate_params[:customerName]

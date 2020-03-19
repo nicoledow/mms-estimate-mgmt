@@ -1,0 +1,8 @@
+<h1> Recent Estimates </h1>
+
+<ul>
+    <% @estimates.each do |e| %>
+        <% customer = e.customer %>
+        <li><%= link_to customer.name, estimate_path(e) %>, <%= e.created_at %> </li>
+    <% end %>
+</ul>
