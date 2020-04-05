@@ -1,5 +1,6 @@
 class EstimatesController < ApplicationController
     skip_before_action :verify_authenticity_token
+    skip_before_action :require_login, only: [:create]
 
     def index
         @estimates = Estimate.all
@@ -29,8 +30,6 @@ class EstimatesController < ApplicationController
         new_quote = Estimate.generate_quote(new_estimate)
         new_estimate.quote = new_quote
         new_estimate.save
-
-        EstimateMailer.with(estimate: @new_estimate).new_estimate_email.deliver_later
 
         render json: new_estimate
     end
