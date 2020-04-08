@@ -1,8 +1,9 @@
 class EstimatesController < ApplicationController
     skip_before_action :verify_authenticity_token
-    skip_before_action :require_login, only: [:create]
+    before_action :require_login, except: [:create]
 
     def index
+        byebug
         @estimates = Estimate.all
     end
 
@@ -49,5 +50,11 @@ private
             :customerEmail,
             :customerPhone,
         )
+    end
+
+    def require_login
+        if !session[:user_id]
+            redirect_to root_path
+        end
     end
 end
