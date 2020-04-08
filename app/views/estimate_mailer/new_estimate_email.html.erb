@@ -1,0 +1,27 @@
+<h1> New estimate for <%= @customer.name %> <br>
+
+<h3>Customer email:</h3> <%= @customer.email %>
+<h3>Customer phone: </h3> <%= @customer.phone %>
+
+<h2> Move details: </h2> 
+
+<h3> Origin: </h3> 
+<p> <%= @estimate.starting_city%>, <%= @estimate.starting_state %> </p> <br>
+<h3> Destination: </h3>
+<p> <%= @estimate.destination_city %>, <%= @estimate.destination_state %> <br>
+<h3> Estimated driving time: </h3>
+<p> Approximately <strong><%= @driving_time %></strong> </p> <br>
+
+<h2> Residence details: </h2>
+
+<h3> Number of bedrooms: </h3>
+<p> <%= @estimate.bedrooms %> </p>
+<h3> Number of floors: </h3>
+<p> <%= @estimate.floors %> <p>
+<h3> Elevator?: </h3>
+<p> <%= @estimate.elevator %> <p>
+<h3> Parking:</h3>
+<p> <%= @estimate.parking_type %> <p>
+
+<h2> Estimate provided to customer: </h2> 
+<p> <%= @estimate.quote %> </p>

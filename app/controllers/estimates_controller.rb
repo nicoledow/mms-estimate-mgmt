@@ -2,15 +2,6 @@ class EstimatesController < ApplicationController
     skip_before_action :verify_authenticity_token
     before_action :require_login, except: [:create]
 
-    def index
-        byebug
-        @estimates = Estimate.all
-    end
-
-    def show
-        @estimate = Estimate.find_by_id(params[:id])
-    end
-
     def create
         customer = Customer.find_or_create_by(email: estimate_params[:customerEmail])
         customer.name = estimate_params[:customerName]
@@ -30,7 +21,10 @@ class EstimatesController < ApplicationController
 
         new_quote = Estimate.generate_quote(new_estimate)
         new_estimate.quote = new_quote
-        new_estimate.save
+
+        if new_estimate.save
+            EstimateMailer.with(estimate: new_estimate).new_estimate_email.deliver_now
+        end
 
         render json: new_estimate
     end
