@@ -1,9 +1,9 @@
 class EstimateMailer < ApplicationMailer
 
     def new_estimate_email
-        @estimate = estimate
+        @estimate = Estimate.last
         @driving_time = "#{@estimate.driving_time} hours"
         @customer = @estimate.customer
-        mail(to: 'nicoledowdev@gmail.com', subject: 'New Estimate')
+        mail(to: ENV['GMAIL_USERNAME_EMAIL'], subject: 'New Estimate')
     end
 end
