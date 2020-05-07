@@ -2,6 +2,11 @@ class EstimatesController < ApplicationController
     skip_before_action :verify_authenticity_token
     before_action :require_login, except: [:create]
 
+    def index
+        estimates = Estimate.all
+        render json: estimates
+    end
+
     def create
         customer = Customer.find_or_create_by(email: estimate_params[:customerEmail])
         customer.name = estimate_params[:customerName]
