@@ -8,10 +8,10 @@ class DistancesController < ApplicationController
         response = RestClient.get("https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{start}&destinations=#{destination}&mode=driving&key=#{ENV['GOOGLE_MAPS_API_KEY']}")
         data = JSON.parse(response)
 
-        if data["status"] == 'OK'
-            render json: "VALID"
-        else
+        if data["rows"].detect { |row| row["elements"].first["status"] != "OK" }
             render json: "NOT VALID"
+        else
+            render json: "VALID"
         end
     end
 
