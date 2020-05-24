@@ -24,7 +24,8 @@ module MmsEstimateMgmt
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'millennial-moving-solutions.herokuapp.com'
+        # origins 'millennial-moving-solutions.herokuapp.com'
+        origins '*'
         resource '*', headers: :any, methods: [:get, :post, :patch, :options]
       end
     end
