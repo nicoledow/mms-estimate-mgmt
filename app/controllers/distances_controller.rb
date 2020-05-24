@@ -5,13 +5,21 @@ class DistancesController < ApplicationController
     def create
         start = params['start']
         destination = params['destination']
-        response = RestClient.get("https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{start}&destinations=#{destination}&mode=driving&key=#{ENV['GOOGLE_MAPS_API_KEY']}")
-        data = JSON.parse(response)
+        query = RestClient.get("https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{start}&destinations=#{destination}&mode=driving&key=#{ENV['GOOGLE_MAPS_API_KEY']}")
+        google_maps_data = JSON.parse(query)
 
-        if data["rows"].detect { |row| row["elements"].first["status"] != "OK" }
-            render json: "NOT VALID"
+        response = {
+            "status": ''
+        }
+
+        if google_maps_data["rows"].detect { |row| row["elements"].first["status"] != "OK" }
+            response["status"] = "NOT VALID"
+            response = response.to_json
+            render json: response
         else
-            render json: "VALID"
+            response["status"] = "VALID"
+            repsonse = response.to_json
+            render json: response
         end
     end
 
