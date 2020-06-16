@@ -46,7 +46,7 @@ class Estimate < ApplicationRecord
     end
 
     def self.generate_quote(estimate)
-        quote = estimate.estimated_time_factor * (estimate.estimated_labor_cost + estimate.driving_time)
+        quote = estimate.estimated_time_factor * (estimate.estimated_labor_cost + (estimate.driving_time * 75))
         estimate.quote = quote
         estimate.save
         quote
